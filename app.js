@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.set('view engine', 'ejs');
-app.set('views','views')
+app.set('views','./views')
 
 
 
@@ -24,15 +24,19 @@ app.get('/',(req,res)=>{
 app.post('/weather',async(req,res) => {
   
     try {
-
+        
         const city = req.body.city
         
         const api = process.env.API_key
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api}`
-    
-        const response = await fetch(url);
-        const data = await response.json();
+        const weatherApiBaseUrl = process.env.WEATHER_API_BASE_URL;
+        const apiKey = process.env.WEATHER_API_KEY;
+        const weatherApiUrl = `${weatherApiBaseUrl}?q=${city}&appid=${apiKey}`;
 
+        
+        const response = await fetch(weatherApiUrl);
+        const data = await response.json();
+        
 
         
         const pic = '/img/sun.png'
@@ -41,17 +45,18 @@ app.post('/weather',async(req,res) => {
         const down = '/img/down-arrow.png'
         const hum = '/img/water-waves.png'
         const wind = '/img/wind.png'
-
-
+        
+        
         const night = '/night/night.png'
         const nightlo = '/night/nightloc.png'
         const downarr = '/night/downarrni.png'
         const uparr = '/night/uparrday.png'
         const nighthumi = '/night/nighthumi.png'
         const niwaves = '/night/nightwaves.png'
-
-
+        
+        
         const location = data.name
+        
         const temparature = Math.round(data.main.temp*0.1)
         const desp = data.weather[0].description
         const mintemp = Math.round(data.main.temp_min*0.1)
@@ -63,7 +68,7 @@ app.post('/weather',async(req,res) => {
         const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
         const sunriseTime = data.sys.sunrise; // Sunrise time in seconds
         const sunsetTime = data.sys.sunset; // Sunset time in seconds
-
+        
         const isDay = currentTime >= sunriseTime && currentTime <= sunsetTime;
         
         
