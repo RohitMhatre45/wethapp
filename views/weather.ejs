@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="/css/styy.css">
+</head>
+<body>
+    <div class="card <%= dayy ? 'colod' : 'colon' %>">
+        
+        <div class="nam">
+
+            <div class="c">
+                <h1 class="name"><%= loc %></h1>
+                
+                <% if (dayy) { %>
+                   
+                    <img class="d" src="<%= pin %>" alt="">
+                    
+                    <% } else { %>
+                        <img class="d" src="<%= nightlocation %>" alt="d">
+                  <% } %>
+
+            </div>
+
+
+
+
+        </div>
+
+        <% if (dayy) { %>
+            <img src="<%= pics %>" alt="d">
+          
+          <% } else { %>
+            <img src="<%= nights %>" alt="d">
+          <% } %>
+      
+
+        <div class="aother">
+            <h1><%= temper %>&deg;C</h1>
+            <h3><%= description %></h3>
+        </div>
+       <div class="tempran">
+        <div class="up">
+
+            <% if (dayy) { %>
+               
+                <img class="realup" src="<%= upword %>" alt="">
+              
+              <% } else { %>
+                <img class="realup" src="<%= uparrrr %>" alt="d">
+              <% } %>
+
+
+
+
+
+
+            <h3><%= maxtem %>&deg;C</h3>
+
+            <% if (dayy) { %>
+               
+                <img class="realdown" src="<%= downword %>" alt="">
+              
+              <% } else { %>
+                <img class="realdown" src="<%= downarrr %>" alt="d">
+              <% } %>
+
+
+
+            <h3><%= mintem %>&deg;C</h3>
+        </div>
+        
+       </div>
+
+       <div class="all">
+           <div class="humidity">
+
+            <% if (dayy) { %>
+               
+                <img class="adf" src="<%= humidity %>" alt="">
+              
+              <% } else { %>
+                <img class="adf"  src="<%= wavesni %>" alt="d">
+              <% } %>
+
+
+
+               <div class="er">
+               <h3 class="number"><%=humival  %>%</h3>
+               <h4 class="humdi">humidity</h4>
+                </div>
+    
+    
+           </div>
+    
+           <div class="wind ">
+
+            <% if (dayy) { %>
+               
+                <img class="adf" src="<%= winds %>" alt="">
+              
+              <% } else { %>
+                <img class="adf" src="<%= humidnight %>" alt="d">
+              <% } %>
+
+
+
+            <div class="er">
+
+                <h3 class="number"><%= windval %>km/h</h3>
+                <h4 class="humdi winds">Wind Speed</h4>
+        
+            </div>
+           </div>
+
+       </div>
+
+       
+
+    </div>
+    <button class="button-3" ><a href="/">Go back</a></button>
+   
+    
+</body>
+</html>
